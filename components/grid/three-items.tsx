@@ -1,5 +1,5 @@
 import { GridTileImage } from 'components/grid/tile';
-import { getCollectionProducts } from 'lib/sylius';
+import { getCollectionProducts } from 'lib/sylius/catalog/products';
 import type { Product } from 'lib/sylius/types';
 import Link from 'next/link';
 
@@ -28,8 +28,8 @@ function ThreeItemGridItem({
           label={{
             position: size === 'full' ? 'center' : 'bottom',
             title: item.title as string,
-            amount: item.priceRange.maxVariantPrice.amount,
-            currencyCode: item.priceRange.maxVariantPrice.currencyCode
+            amount: item.priceRange.minVariantPrice.amount,
+            currencyCode: item.priceRange.minVariantPrice.currencyCode
           }}
         />
       </Link>

@@ -1,4 +1,5 @@
-import { getCollection, getCollectionProducts } from 'lib/sylius';
+import { getCollection } from 'lib/sylius/catalog/taxons';
+import { getCollectionProducts } from 'lib/sylius/catalog/products';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

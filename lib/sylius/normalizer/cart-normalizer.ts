@@ -4,7 +4,11 @@ import { Cart, CartItem } from '../types';
 import { normalizeProduct } from './product-normalizer';
 import { normalizePrice } from './utils-normalizer';
 
-export const normalizeCart = (syliusCart: SyliusCart): Cart => {
+export const normalizeCart = async (syliusCart: SyliusCart) : Promise<Cart> => {
+  const items = syliusCart.items ? await Promise.all(syliusCart.items.map(async(item) => {
+    return await normalizeCartItem(item)
+  })) : []
+
   return {
     id: syliusCart.tokenValue,
     checkoutUrl: '',
@@ -14,14 +18,14 @@ export const normalizeCart = (syliusCart: SyliusCart): Cart => {
       totalTaxAmount: normalizePrice(syliusCart.taxTotal),
       shippingAmount: normalizePrice(syliusCart.shippingTotal)
     },
-    lines: syliusCart.items ? syliusCart.items.map(normalizeCartItem) : [],
+    lines: items,
     totalQuantity: syliusCart.items
       ? syliusCart.items.reduce((acc, item) => acc + item.quantity, 0)
       : 0
   };
 };
 
-const normalizeCartItem = (syliusCartItem: SyliusCartItem): CartItem => {
+const normalizeCartItem = async (syliusCartItem: SyliusCartItem): Promise<CartItem> => {
   return {
     id: syliusCartItem.id.toString(),
     quantity: syliusCartItem.quantity,
@@ -34,7 +38,7 @@ const normalizeCartItem = (syliusCartItem: SyliusCartItem): CartItem => {
       selectedOptions: syliusCartItem.variant.optionValues.map((optionValue) =>
         normalizeOrderItemOptionValue(optionValue, syliusCartItem.product.options)
       ),
-      product: normalizeProduct(syliusCartItem.product)
+      product: await normalizeProduct(syliusCartItem.product)
     }
   };
 };

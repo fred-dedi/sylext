@@ -1,3 +1,5 @@
+import { Money } from '../types';
+
 export interface SyliusProduct {
   id: number;
   name: string;
@@ -10,6 +12,12 @@ export interface SyliusProduct {
   productTaxons: SyliusProductTaxon[];
   enabled: boolean;
   updatedAt: Date;
+  priceRange: SyliusProductPriceRange;
+  handle: string;
+  seo: object;
+  availableForSale: boolean;
+  featuredImage: SyliusProductImage;
+  tags: object;
 }
 
 export interface SyliusProductImage {
@@ -56,4 +64,9 @@ export interface SyliusTaxon {
   name: string;
   slug: string;
   description: string;
+}
+
+export interface SyliusProductPriceRange {
+  minVariantPrice: Money;
+  maxVariantPrice: Money;
 }

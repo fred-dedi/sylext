@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Suspense } from 'react';
 
-import { getCollections } from 'lib/sylius';
+import { getCollections } from 'lib/sylius/catalog/taxons';
 import FilterList from './filter';
 
 async function CollectionList() {

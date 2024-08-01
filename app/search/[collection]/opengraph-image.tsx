@@ -1,5 +1,5 @@
 import OpengraphImage from 'components/opengraph-image';
-import { getCollection } from 'lib/sylius';
+import { getCollection } from 'lib/sylius/catalog/taxons';
 
 export const runtime = 'edge';
 

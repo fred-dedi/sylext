@@ -83,6 +83,7 @@ export function VariantSelector({
               disabled={!isAvailableForSale}
               onClick={() => {
                 router.replace(optionUrl, { scroll: false });
+                history.replaceState(null, '', optionUrl);
               }}
               title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
               className={clsx(

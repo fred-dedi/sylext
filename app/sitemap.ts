@@ -1,4 +1,6 @@
-import { getCollections, getPages, getProducts } from 'lib/sylius';
+import { getProducts } from 'lib/sylius/catalog/products';
+import { getPages } from 'lib/sylius';
+import { getCollections} from 'lib/sylius/catalog/taxons';
 import { MetadataRoute } from 'next';
 
 type Route = {

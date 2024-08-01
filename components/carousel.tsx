@@ -1,6 +1,6 @@
-import { getCollectionProducts } from 'lib/sylius';
 import Link from 'next/link';
 import { GridTileImage } from './grid/tile';
+import {getCollectionProducts} from "../lib/sylius/catalog/products";
 
 export async function Carousel() {
   // Collections that start with `hidden-*` are hidden from the search page.

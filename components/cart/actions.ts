@@ -1,7 +1,7 @@
 'use server';
 
 import { TAGS } from 'lib/constants';
-import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/sylius';
+import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/sylius/checkout/cart';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 

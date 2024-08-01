@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+
+  pnpm:
+    build:
+      context: .
+      dockerfile: .docker/DockerFile
+    volumes:
+        - .:/app:rw,cached
+    working_dir: /app
+    ports:
+        - 3100:3000
+    command: ["pnpm", "run", "dev"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - sylius
+
+networks:
+  sylius:
+    external: true

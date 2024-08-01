@@ -11,7 +11,12 @@ module.exports = {
         protocol: 'http',
         hostname: 'localhost',
         pathname: '/media/**'
-      }
+      },
+      {
+        protocol: 'http',
+        hostname: 'apache',
+        pathname: '/media/**'
+      },
     ]
   },
   async redirects() {

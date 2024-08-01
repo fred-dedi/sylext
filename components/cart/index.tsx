@@ -1,4 +1,4 @@
-import { getCart } from 'lib/sylius';
+import { getCart } from 'lib/sylius/checkout/cart';
 import { cookies } from 'next/headers';
 import CartModal from './modal';
 
