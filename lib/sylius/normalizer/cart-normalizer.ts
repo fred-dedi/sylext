@@ -11,7 +11,7 @@ export const normalizeCart = async (syliusCart: SyliusCart) : Promise<Cart> => {
 
   return {
     id: syliusCart.tokenValue,
-    checkoutUrl: '',
+    checkoutUrl: '/checkout',
     cost: {
       subtotalAmount: normalizePrice(syliusCart.itemsTotal),
       totalAmount: normalizePrice(syliusCart.total),
@@ -34,6 +34,7 @@ const normalizeCartItem = async (syliusCartItem: SyliusCartItem): Promise<CartIt
     },
     merchandise: {
       id: syliusCartItem.variant.id.toString(),
+      name: syliusCartItem.productName,
       title: syliusCartItem.variant.name,
       selectedOptions: syliusCartItem.variant.optionValues.map((optionValue) =>
         normalizeOrderItemOptionValue(optionValue, syliusCartItem.product.options)

@@ -7,13 +7,13 @@ services:
       context: .
       dockerfile: .docker/DockerFile
     volumes:
-        - .:/app:rw,cached
+      - .:/app:rw,cached
     working_dir: /app
+    environment:
+      - USER_ID=${UID:-1001}
     ports:
-        - 3100:3000
-    command: ["pnpm", "run", "dev"]
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 3100:3000
+    command: ["npm", "run", "dev"]
     networks:
       - sylius
 

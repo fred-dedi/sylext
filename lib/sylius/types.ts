@@ -19,6 +19,7 @@ export interface CartItem {
   };
   merchandise: {
     id: string;
+    name: string;
     title: string;
     selectedOptions: {
       name: string;

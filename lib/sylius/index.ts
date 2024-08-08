@@ -9,9 +9,10 @@ export default async function syliusRequest(
   method: string,
   path = '',
   payload?: Record<string, unknown> | undefined,
-  contentType?: string
+  contentType?: string,
+  options?: object
 ) {
-  const options: RequestInit = {
+  const defaultOptions: RequestInit = {
     method,
     headers: {
       'Content-Type': contentType ?? 'application/json',
@@ -19,12 +20,14 @@ export default async function syliusRequest(
     }
   };
 
+  const fetchOptions: RequestInit = { ...defaultOptions, ...options };
+
   if (payload) {
-    options.body = JSON.stringify(payload);
+    fetchOptions.body = JSON.stringify(payload);
   }
 
   try {
-    const result = await fetch(`${ENDPOINT}${path}`, options);
+    const result = await fetch(`${ENDPOINT}${path}`, fetchOptions);
 
     const body = await result.json();
 

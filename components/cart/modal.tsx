@@ -85,9 +85,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
                       item.merchandise.selectedOptions.forEach(({ name, value }) => {
-                        if (value !== DEFAULT_OPTION) {
                           merchandiseSearchParams[name.toLowerCase()] = value;
-                        }
                       });
 
                       const merchandiseUrl = createUrl(
@@ -124,13 +122,14 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
 
                               <div className="flex flex-1 flex-col text-base">
                                 <span className="leading-tight">
-                                  {item.merchandise.product.title}
+                                  {item.merchandise.name}
                                 </span>
-                                {item.merchandise.title !== DEFAULT_OPTION ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.merchandise.title}
-                                  </p>
-                                ) : null}
+                                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                                  {item.merchandise.selectedOptions.map(({name, value}) => {
+                                      return `${name} : ${value}`
+                                  })
+                                  }
+                                </p>
                               </div>
                             </Link>
                             <div className="flex h-16 flex-col justify-between">

@@ -1,5 +1,5 @@
 import {AddToCartPayload, Cart, UpdateCartPayload} from "../types";
-import {REST_METHODS} from "../../constants";
+import {REST_METHODS, TAGS} from "../../constants";
 import {normalizeCart} from "../normalizer/cart-normalizer";
 import syliusRequest from "../index";
 

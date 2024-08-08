@@ -66,7 +66,7 @@ const normalizeProductOption = (option: SyliusProductOption): ProductOption => (
 });
 
 export const normalizeProductImage = (image: SyliusProductImage): Image => ({
-  url: image.path,
+  url: process.env.NEXT_PUBLIC_SYLIUS_BACKEND_API + image.path.replace(process.env.NEXT_PUBLIC_SYLIUS_BACKEND_API, ""),
   altText: image.path,
   width: 400,
   height: 400
@@ -77,11 +77,11 @@ const normalizePriceRange = (product: SyliusProduct) => {
   let maxVariantPrice = 0;
 
   for (const variant of product.variants) {
-    if (variant.price < minVariantPrice) {
-      minVariantPrice = variant.price;
-    }
     if (variant.price > maxVariantPrice) {
       maxVariantPrice = variant.price;
+    }
+    if (variant.price <= maxVariantPrice) {
+      minVariantPrice = variant.price;
     }
   }
 
